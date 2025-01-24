@@ -1,6 +1,6 @@
 # What is Ansible?
 Ansible is a highly versatile automation tool that allows for the management of configurations and resources, and deployment of applications.
-Ansible allows the usage of the concept of Infrastructure as Code, the idea that an environment and its characteristics/connections can be described as code (YAML) for easy reliable reproducibility. 
+Ansible allows the usage of the concept of Infrastructure as Code, the idea that an environment and its characteristics/connections can be described as code (YAML) for easy and reliable reproducibility. 
 Infrastructure as Code removes a lot of the chances for human error making it essential in any enterprise environment.
 ## How does it work?
 Ansible utilizes an agentless architecture, meaning that no there is no software that needs to be installed on host machines. 
