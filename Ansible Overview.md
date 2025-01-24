@@ -7,4 +7,7 @@ Ansible utilizes an agentless architecture, meaning that no there is no software
 Ansible uses SSH for connections, allowing for the Management Node to execute any command remotely that the ansible remote user has persmissions to.
 
 ![image](https://github.com/user-attachments/assets/c1c1392f-a202-4218-8d7b-790e85df76d4)
-
+## Execution
+```
+ansible-playbook playbook.yml
+```
