@@ -37,7 +37,7 @@ name: update Debian
     update_cache: true
   when: ansible_facts['distribution'] == "Debian"
 ```
-## [WIP] Demo Splunk Universal Forwarder Batch Deployment
+## [WIP] Demo SUF (Splunk Universal Forwarder) Batch Deployment to Linux
 ```
 - name: Batch Deploy SUF
   hosts: test
@@ -59,9 +59,11 @@ name: update Debian
 
   - name: Starting Splunk
     ansible.builtin.command: /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --no-prompt --seed-pas>
+
   - name: Connect Client
-    command: /opt/splunkforwarder/bin/splunk set deploy-poll XXX.XXX.XXX.XXX:8089 -auth asmin:************
+    command: /opt/splunkforwarder/bin/splunk set deploy-poll XXX.XXX.XXX.XXX:8089 -auth admin:************
 
   - name: restart client
     command: /opt/splunkforwarder/bin/splunk restart
 ```
+In our test environment, we were able deploy a SUF instance to a Managed Host and have it connect back to the deployment server with no manual interaction. With this project, we will be able to batch deploy our universal forwarders to the ~100 Linux VMs in our environment.
