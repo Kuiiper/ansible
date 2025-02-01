@@ -12,7 +12,7 @@ Ansible uses SSH for connections, allowing for the Management Node to execute an
 This is the first playbook we created to perform a simple update/upgrade to the hosts declared in our inventory. The primary source for the creation of the playbook was the Ansible official documentation.
 ```
 - name: Update all servers
-  hosts: all
+  hosts: centos, rhel
   become: true
   gather_facts: yes
   remote_user: root
@@ -30,11 +30,10 @@ This is the first playbook we created to perform a simple update/upgrade to the 
       name: "*"
       state: latest
       update_cache: true
-    when: ansible_facts['distribution'] == "Debian"
+    when: ansible_facts['distribution'] == "Debian" or ansible_facts['distribution'] == "Ubuntu"
 ```
-What the playbook looks like when executed correctly
-![image](https://github.com/user-attachments/assets/cfde3a37-4f29-455c-83df-d989dab2e3a3)
-
+What the playbook looks like when executed correctly. Notice how Ansible will skip the the host when it does not meet the condition stated in ```when:```
+![image](https://github.com/user-attachments/assets/029c0c11-1f25-4480-b312-1aa2ab62bc69)
 
 ### [hosts:](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html)
 Declares the hosts from the Ansible inventory file as target for the playbook. In this demonstration we use ```all``` , but you can declare a specific host group or a specific IP Address as long as they are located within the default inventory file
