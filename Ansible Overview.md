@@ -7,10 +7,7 @@ Ansible utilizes an agentless architecture, meaning that no there is no software
 Ansible uses SSH for connections, allowing for the Management Node to execute any command remotely that the ansible remote user has persmissions to.
 
 ![image](https://github.com/user-attachments/assets/c1c1392f-a202-4218-8d7b-790e85df76d4)
-## Execution
-```
-ansible-playbook playbook.yml
-```
+
 ## Simple Patch Playbook
 This is the first playbook I created to perform a simple update/upgrade to the hosts declared in our inventory. The primary source for the creation of the playbook was the Ansible official documentation.
 ```
@@ -37,7 +34,25 @@ name: update Debian
     update_cache: true
   when: ansible_facts['distribution'] == "Debian"
 ```
-## [WIP] Demo SUF (Splunk Universal Forwarder) Batch Deployment to Linux
+### Commands Used
+#### hosts:
+
+Declares the hosts from the Ansible inventory file as target for the playbook. In this demonstration we use ```all``` , but you can declare a specific host group or a specific IP Address as long as they are located within the default inventory file
+```
+hosts: ansibleclients
+hosts: XXX.XXX.XXX.XXX
+```
+### become:
+
+Allows Ansible to privilege escalate to complete tasks. Can be either ```true``` or ```false```(default).
+```
+become: true
+become: false
+```
+### gather_facts:
+
+
+## [WIP] SUF (Splunk Universal Forwarder) Batch Deployment to Linux
 In our test environment, we were able deploy a SUF instance to a Managed Host and have it connect back to the deployment server with no manual interaction. With this project, we will be able to batch deploy SUFs to the ~100 Linux VMs in our environment.
 ```
 - name: Batch Deploy SUF
