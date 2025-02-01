@@ -37,3 +37,31 @@ name: update Debian
     update_cache: true
   when: ansible_facts['distribution'] == "Debian"
 ```
+## [WIP] Demo Splunk Universal Forwarder Batch Deployment
+```
+- name: Batch Deploy SUF
+  hosts: test
+  gather_facts: yes
+  remote_user: ansible
+
+  tasks:
+  - name: Download SUF
+    get_url:
+      url: https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwarder-9.4.0-6b4ebe426>
+      dest: /opt
+      mode: '0755'
+    register: download
+
+  - name: Install SUF
+    ansible.builtin.apt:
+      deb: /opt/splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.deb
+      state: present
+
+  - name: Starting Splunk
+    ansible.builtin.command: /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --no-prompt --seed-pas>
+  - name: Connect Client
+    command: /opt/splunkforwarder/bin/splunk set deploy-poll XXX.XXX.XXX.XXX:8089 -auth asmin:************
+
+  - name: restart client
+    command: /opt/splunkforwarder/bin/splunk restart
+```
