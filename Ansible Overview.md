@@ -111,7 +111,7 @@ ansible-playbooks sufdeploy.yml
 
 ![image](https://github.com/user-attachments/assets/5baeec43-7a04-4029-bb17-b6423dfd5fdf)
 
-Below is a picture of the newly added host seen from the perspective of our deployment server:
+Below is a picture of the newly added host seen from the perspective of our deployment server. Our new host 10.128.69.239 has been added to our list of forwarders:
 
 ![image](https://github.com/user-attachments/assets/a2669afe-841d-4d47-a0f0-14b45c19590b)
 
