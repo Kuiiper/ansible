@@ -66,4 +66,4 @@ name: update Debian
   - name: restart client
     command: /opt/splunkforwarder/bin/splunk restart
 ```
-In our test environment, we were able deploy a SUF instance to a Managed Host and have it connect back to the deployment server with no manual interaction. With this project, we will be able to batch deploy our universal forwarders to the ~100 Linux VMs in our environment.
+In our test environment, we were able deploy a SUF instance to a Managed Host and have it connect back to the deployment server with no manual interaction. With this project, we will be able to batch deploy SUFs to the ~100 Linux VMs in our environment.
