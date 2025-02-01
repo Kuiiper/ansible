@@ -9,7 +9,7 @@ In our test environment, we were able deploy a SUF instance to a Managed Host an
   tasks:
   - name: Download SUF
     get_url:
-      url: https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwarder-9.4.0-6b4ebe426>
+      url: https://download.splunk.com/products/universalforwarder/releases/9.4.0/linux/splunkforwarder-9.4.0-6b4ebe426ca6-linux-amd64.deb
       dest: /opt
       mode: '0755'
     register: download
@@ -43,5 +43,35 @@ As you can see, the commands used to 'download -> install -> configure' the appl
 
 ## Breakdown of Code
 
+### [hosts:](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html)
+Declares the hosts from the Ansible inventory file as target for the playbook. In this demonstration we use ```all``` , but you can declare a specific host group or a specific IP Address as long as they are located within the default inventory file.
+```
+hosts: examplegroup
+hosts: X.X.X.X
+```
 
+### [gather_facts:](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_vars_facts.html)
+Allows Ansible to gather facts (Operating System, IP Address, Hardware, etc.) about the target Managed Host(s). Can be either ```true``` or ```false```. We plan on implementing accounting for differing OS as part of a later update. Will need information for ```when:``` conditional.
+```
+gather_facts: true
+gather_facts: false
+```
 
+### [remote_user:](https://docs.ansible.com/ansible/latest/inventory_guide/connection_details.html)
+Declares the user on the Managed Host that Ansible will connect to via SSH.
+```
+remote_user: example_user
+```
+
+### [get_url:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)
+Allows you to download a file from a specified URL. Works exactly like running ```wget``` manually. ```dest:``` specifies the destination for the downloaded file. ```mode:``` allows you to set the permissions of the downloaded file for users and groups. ```register:```Conditional that registers the output of the task as a variable that can be invoked later.
+```
+get_url:
+      url: https://download.example.com/exampleapplication.deb
+      dest: /example_user/dhome
+```
+### [ansible.builtin.apt:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html)
+Ansible utility that manages ```apt``` package manager. Has many parameters that can be declared to perform the many functions of ```apt```. In Ansible, the path to a .deb file must be denoted using ```deb:``` instead of ```name:```.
+
+### [command:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html)
+Allows you to execute commands any commands you can normally perform in a shell. The commands we use for the last 3 steps are all steps that are normally done manually during the installation process of the SUF. Ansible allows us to deploy these commands to all targeted Managed Hosts.
