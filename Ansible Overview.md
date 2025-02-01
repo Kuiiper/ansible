@@ -67,4 +67,12 @@ In our test environment, we were able deploy a SUF instance to a Managed Host an
   - name: restart client
     command: /opt/splunkforwarder/bin/splunk restart
 ```
+What running the playbook looks like in the terminal:
+
+![image](https://github.com/user-attachments/assets/5baeec43-7a04-4029-bb17-b6423dfd5fdf)
+
+Below will be a picture of the newly added host seen from the perspective of our deployment server:
+
+![image](https://github.com/user-attachments/assets/a2669afe-841d-4d47-a0f0-14b45c19590b)
+
 
