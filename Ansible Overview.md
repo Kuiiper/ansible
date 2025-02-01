@@ -22,7 +22,7 @@ To install Ansible using ```pip``` use the following command:
 ```
 python3 -m pip install --user ansible
 ```
-Once finished Ansible should be ready to use. Ansible will have a default location in ```/etc/ansible```, for our environment, this location was not automatically created. For this we simply created the necessary directories and files for usage.
+Once finished, Ansible should be ready to use. Ansible will have a default location in ```/etc/ansible```, for our environment, this location was not automatically created. For this we simply created the necessary directories and files for usage.
 ```
 mkdir /etc/ansible
 mkdir /etc/ansible/playbooks
