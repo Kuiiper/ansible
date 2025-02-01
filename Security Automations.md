@@ -41,3 +41,7 @@ Below is a picture of the successfully added host seen from the perspective of o
 ![image](https://github.com/user-attachments/assets/a2669afe-841d-4d47-a0f0-14b45c19590b)
 As you can see, the commands used to 'download -> install -> configure' the application are very similar to how it would be done manually. This process framework can be applied to an assortment of different applications, you would just need to change out the Splunk specific information for information relevant to your needed application.
 
+## Breakdown of Code
+
+
+
