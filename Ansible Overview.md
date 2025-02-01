@@ -32,6 +32,9 @@ This is the first playbook we created to perform a simple update/upgrade to the 
       update_cache: true
     when: ansible_facts['distribution'] == "Debian"
 ```
+What the playbook looks like when executed correctly
+![image](https://github.com/user-attachments/assets/cfde3a37-4f29-455c-83df-d989dab2e3a3)
+
 
 ### [hosts:](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html)
 Declares the hosts from the Ansible inventory file as target for the playbook. In this demonstration we use ```all``` , but you can declare a specific host group or a specific IP Address as long as they are located within the default inventory file
