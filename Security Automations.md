@@ -1,5 +1,5 @@
-# [WIP] SUF ([Splunk Universal Forwarder](https://www.splunk.com/en_us/blog/learn/splunk-universal-forwarder.html)) Batch Deployment to Linux
-In our test environment, we were able deploy a SUF instance to a Managed Host and have it connect back to the deployment server with no manual interaction. With this project, we will be able to batch deploy SUFs to the ~100 Linux VMs in our environment.
+# [WIP - Not Production]: SUF ([Splunk Universal Forwarder](https://www.splunk.com/en_us/blog/learn/splunk-universal-forwarder.html)) Batch Deployment to Linux
+In our test environment, we were able deploy a SUF instance to a Managed Host and have it connect back to the deployment server with no manual interaction. With this project, we will be able to batch deploy SUFs to the ~100 Linux VMs in our environment. The end goal is to create a highly secured, shared Ansible user that we can utilize to deploy applications to in batches.
 ```
 - name: Batch Deploy SUF
   hosts: test
