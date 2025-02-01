@@ -9,7 +9,7 @@ Ansible uses SSH for connections, allowing for the Management Node to execute an
 ![image](https://github.com/user-attachments/assets/c1c1392f-a202-4218-8d7b-790e85df76d4)
 
 ## Simple Patch Playbook For Differing Linux Distributions
-This is the first playbook I created to perform a simple update/upgrade to the hosts declared in our inventory. The primary source for the creation of the playbook was the Ansible official documentation.
+This is the first playbook we created to perform a simple update/upgrade to the hosts declared in our inventory. The primary source for the creation of the playbook was the Ansible official documentation.
 ```
 - name: Update all servers
   hosts: all
