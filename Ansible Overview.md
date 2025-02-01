@@ -8,48 +8,67 @@ Ansible uses SSH for connections, allowing for the Management Node to execute an
 
 ![image](https://github.com/user-attachments/assets/c1c1392f-a202-4218-8d7b-790e85df76d4)
 
-## Simple Patch Playbook
+## Simple Patch Playbook For Differing Linux Distributions
 This is the first playbook I created to perform a simple update/upgrade to the hosts declared in our inventory. The primary source for the creation of the playbook was the Ansible official documentation.
 ```
-name: Update all servers
-hosts: all
-become: true
-gather_facts: yes
-remote_user: ansible
+- name: Update all servers
+  hosts: all
+  become: true
+  gather_facts: yes
+  remote_user: root
 
   tasks:
-  
-name: update RedHat
-  ansible.builtin.dnf:
-    name: "*"
-    state: latest
-    update_cache: true
-  when: ansible_facts['distribution'] == "RedHat" or ansible_facts['distribution'] == "CentOS"
+  - name: update RedHat
+    ansible.builtin.dnf:
+      name: "*"
+      state: latest
+      update_cache: true
+    when: ansible_facts['distribution'] == "RedHat" or ansible_facts['distribution'] == "CentOS"
 
-  
-name: update Debian
-  ansible.builtin.apt:
-    name: "*"
-    state: latest
-    update_cache: true
-  when: ansible_facts['distribution'] == "Debian"
+  - name: update Debian
+    ansible.builtin.apt:
+      name: "*"
+      state: latest
+      update_cache: true
+    when: ansible_facts['distribution'] == "Debian"
 ```
-### Commands Used
-#### hosts:
 
+### [hosts:](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html)
 Declares the hosts from the Ansible inventory file as target for the playbook. In this demonstration we use ```all``` , but you can declare a specific host group or a specific IP Address as long as they are located within the default inventory file
 ```
 hosts: ansibleclients
 hosts: XXX.XXX.XXX.XXX
 ```
-### become:
 
+### [become:](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_privilege_escalation.html)
 Allows Ansible to privilege escalate to complete tasks. Can be either ```true``` or ```false```(default).
 ```
 become: true
 become: false
 ```
-### gather_facts:
+
+### [gather_facts:](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_vars_facts.html)
+Allows Ansible to gather facts (Operating System, IP Address, Hardware, etc.) about the target Managed Host(s). Can be either ```true``` or ```false```. For this playbook, we need operating system information so we can use the appropriate package manager for different Linux distributions.
+```
+gather_facts: true
+gather_facts: false
+```
+
+### [remote_user:](https://docs.ansible.com/ansible/latest/inventory_guide/connection_details.html)
+Declares the user on the Managed Host that Ansible will connect to via SSH.
+```
+remote_user: root
+```
+
+### [ansible.builtin.dnf:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html)
+Ansible utility that manages ```dnf``` package manager. Has many parameters that can be declared to perform the many functions of ```dnf```. For our environment we are using ```name:``` to declare the package to update, ```state:``` for how to install updated packages, and ```update_cache:``` to have dnf check is package cache is outdated.
+
+### [when:](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html)
+Allows the usage of conditionals based on a wide assortment of parameters. In our example, we use ```when:``` to perform tasks based on operation system:
+```
+when: ansible_facts['distribution']
+```
+This allows us to either use ```dnf``` or ```apt``` depending on the operating system.
 
 
 ## [WIP] SUF (Splunk Universal Forwarder) Batch Deployment to Linux
