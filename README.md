@@ -7,7 +7,7 @@ This repository will showcase a detailed introduction to Ansible from learner's 
 The need for Ansible arose as we began scaling our infrastructure horizontally. As most new administrators will realize, manually configuring every machine in your environment is not practical, efficient, or effective. Manual configuration is prone to human error which can lead to security oversights like unpatched servers or poorly configured default settings. Ansible allows for the management of multiple devices from a single point: the Control Node.
 
 # Current Projects [WIP & Complete]
-This section contains our current and in-progress playbooks that we have implemented or plan to implement in our production environment. These projects will range from basic host management, to more advance application deployment and security automations. Projects will be listed with their current level of implementation and development.
+This section contains our current and in-progress playbooks that we have implemented or plan to implement in our production environment. These projects will range from basic host management, to more advanced application deployment and security automations. Projects will be listed with their current level of implementation and development.
 
 * [Patching/Config Management](https://github.com/Kuiiper/ansible/blob/main/Patching.md)
 * [Security Automation](https://github.com/Kuiiper/ansible/blob/main/Security%20Automations.md)
