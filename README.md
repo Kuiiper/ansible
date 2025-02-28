@@ -11,3 +11,4 @@ This section contains our current and in-progress playbooks that we have impleme
 
 * [Patching/Config Management](https://github.com/Kuiiper/ansible/blob/main/Patching.md)
 * [Security Automation](https://github.com/Kuiiper/ansible/blob/main/Security%20Automations.md)
+* [initUser Framework](https://github.com/Kuiiper/ansible/blob/main/initUser%20Framework%20for%20Ansible.md)
