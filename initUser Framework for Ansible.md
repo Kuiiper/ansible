@@ -1,4 +1,4 @@
-# [WIP - Testing] initUser Framework for Ansible Deployment
+# [WIP - Testing]: initUser Framework for Ansible Deployment
 initUser Framework is the name i am giving to an application of what I would consider some good practices for deploying Ansible throughout an environment. It begins with the addition of a privileged user called initUser, standing for initialization user. The idea of the user is that it will be used as a initial access point for Ansible to begin configuring the chosen host.
 Once that purpose has been fulfilled, the user will be deleted.
 
@@ -40,3 +40,4 @@ sudo apt install sshpass
       user: ansible
       state: absent
 ```
+## Code breakdown
