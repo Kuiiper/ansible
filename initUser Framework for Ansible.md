@@ -33,19 +33,25 @@ sudo apt install sshpass
     authorized_key:
       user: ansible
       state: present
-      key: "{{ lookup('file', '/root/.ssh/ansibleKey.pub') }}"
+      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
 
   - name: Delete initUser
     ansible.builtin.user
-      user: ansible
+      user: initUser
       state: absent
 ```
 ## Breakdown of Code
 
 ### [ansible.builtin.user:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)
-Module that allows for the manipulation of users on the host. In this case we are using ```name:``` to decalre the name of the new user to be created. the ```shell:``` arguement is used to pass the desired shell of the new user. You can add many other parameters to the new user.
+Module that allows for the manipulation of users on the host. In this case we are using ```name:``` to decalre the name of the new user to be created. the ```shell:``` arguement is used to pass the desired shell of the new user. You can add many other parameters to the new user. The last command of the playbook uses the module as well, but to delete the initUser account used to kickstart the Ansible connection.
 ```
 ansible.builtin.user
   name: new_user
   shell: bin/bash
 ```
+### [authorized_keys:](https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html)
+A module not part of the ```ansible-core``` package. Can install using:
+```
+ansible-galaxy collection install ansible.posix
+```
+This module allows you to manage the key exchange for SSH connections. In this instance, we have already generated an SSH keypair using ```ssh key-gen``` and have saved the key as id_rsa for example purposes. We have designated the new user ansible as the target out the exchange. This command we are running is the same as running ```ssh-copy-id -i /path/to/your/key user@X.X.X.X```. ```key:``` is used to define where the key may be stored and the path/url to that key.
