@@ -40,4 +40,12 @@ sudo apt install sshpass
       user: ansible
       state: absent
 ```
-## Code breakdown
+## Breakdown of Code
+
+### [ansible.builtin.user:](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)
+Module that allows for the manipulation of users on the host. In this case we are using ```name:``` to decalre the name of the new user to be created. the ```shell:``` arguement is used to pass the desired shell of the new user. You can add many other parameters to the new user.
+```
+ansible.builtin.user
+  name: new_user
+  shell: bin/bash
+```
